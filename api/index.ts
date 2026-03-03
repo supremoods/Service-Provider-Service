@@ -14,7 +14,7 @@ const getApp = async (): Promise<Application> => {
             routeContext: "sps",
         });
 
-        appPromise = server.bootstrap({ listen: false });
+        appPromise = server.bootstrap({ listen: false, requireDatabase: true });
     }
 
     return appPromise;
@@ -23,10 +23,14 @@ const getApp = async (): Promise<Application> => {
 export default async function handler(req: any, res: any) {
     try {
         const app = await getApp();
+        if (typeof req?.url === "string" && req.url.startsWith("/api")) {
+            req.url = req.url.replace(/^\/api(\/|$)/, "/");
+            // Express caches parsed URLs; ensure it re-parses after mutation.
+            if (req._parsedUrl) req._parsedUrl = undefined;
+        }
         return app(req, res);
     } catch (error) {
         appPromise = undefined;
         throw error;
     }
 }
-

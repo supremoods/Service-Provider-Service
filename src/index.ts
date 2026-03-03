@@ -1,15 +1,12 @@
 import AppServer from "./app/application-server";
 
-const main = async () => {
-    const port = process.env.PORT ? parseInt(process.env.PORT) : 5001;
-    
-    const server = new AppServer({
-        port,
-        routeDir: "src/modules",
-        routeContext: "sps"
-    });
+const envPort = Number.parseInt(process.env.PORT ?? "", 10);
+const port = Number.isFinite(envPort) ? envPort : 5001;
 
-    await server.bootstrap();
-};
+const server = new AppServer({
+    port,
+    routeDir: "src/modules",
+    routeContext: "sps",
+});
 
-main();
+await server.bootstrap();

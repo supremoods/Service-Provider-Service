@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "bun run --watch index.ts",
-    "dev:vercel": "vercel dev -p 5001"
+    "dev:vercel": "vercel dev --listen 5001"
   },
   "private": true,
   "dependencies": {
