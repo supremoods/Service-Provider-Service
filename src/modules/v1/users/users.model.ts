@@ -1,4 +1,4 @@
-import BaseAuthenticatorModel from "@/core/auth/base-authenticator-model";
+import BaseAuthenticatorModel from "../../../core/auth/base-authenticator-model";
 import { DataTypes, type ModelAttributes } from "sequelize"
 
 export default class Users extends BaseAuthenticatorModel {

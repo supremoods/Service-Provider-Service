@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from "express";
-import BaseController from "@/core/http/base-controller";
+import BaseController from "../../../core/http/base-controller";
 import Users from "../users/users.model";
-import { generate } from "@/shared/token-generator";
-import { createErrorResponse, createSuccessResponse } from "@/core/http/base-controller.helper";
-import Logger from "@/shared/logger";
+import { generate } from "../../../shared/token-generator";
+import { createErrorResponse, createSuccessResponse } from "../../../core/http/base-controller.helper";
+import Logger from "../../../shared/logger";
 import RefreshToken from "./refresh-token.model";
 import crypto from "crypto";
 

@@ -13,6 +13,10 @@ interface AppConfig {
     syncModels?: Array<string> | boolean;
 }
 
+interface BootstrapOptions {
+    listen?: boolean;
+}
+
 export default class AppServer {
     private app: Application;
     private config: AppConfig;
@@ -22,7 +26,9 @@ export default class AppServer {
         this.config = config;
     }
 
-    public async bootstrap(): Promise<void> {
+    public async bootstrap(options: BootstrapOptions = {}): Promise<Application> {
+        const { listen = true } = options;
+
         // Middlewares
         this.app.use(cors());
         this.app.use(helmet());
@@ -55,8 +61,12 @@ export default class AppServer {
         }
 
         // Start server
-        this.app.listen(this.config.port, () => {
-            Logger.info(`API Server ready at http://127.0.0.1:${this.config.port}`);
-        });
+        if (listen) {
+            this.app.listen(this.config.port, () => {
+                Logger.info(`API Server ready at http://127.0.0.1:${this.config.port}`);
+            });
+        }
+
+        return this.app;
     }
 }

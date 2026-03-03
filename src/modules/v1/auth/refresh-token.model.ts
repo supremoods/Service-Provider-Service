@@ -1,4 +1,4 @@
-import BaseModel from "@/core/database/base-model";
+import BaseModel from "../../../core/database/base-model";
 import { DataTypes, type ModelAttributes } from "sequelize";
 
 export default class RefreshTokens extends BaseModel {

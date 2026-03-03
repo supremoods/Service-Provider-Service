@@ -1,6 +1,6 @@
-import BaseRouter from "@/core/http/base-router";
+import BaseRouter from "../../../core/http/base-router";
 import AuthController from "./auth.controller";
-import type { Mappings } from "@/core/types/base-router.types";
+import type { Mappings } from "../../../core/types/base-router.types";
 
 export default class AuthRouter extends BaseRouter<AuthController> {
     constructor(){

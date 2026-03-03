@@ -10,7 +10,8 @@
     "typescript": "^5"
   },
   "scripts": {
-    "dev": "bun run --watch index.ts"
+    "dev": "bun run --watch index.ts",
+    "dev:vercel": "vercel dev -p 5001"
   },
   "private": true,
   "dependencies": {

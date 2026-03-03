@@ -1,6 +1,6 @@
 import type { Request } from 'express';
 import jwt, { type JwtPayload, type Secret, type SignOptions } from 'jsonwebtoken';
-import type { RequestUserType } from '@/core/types/base-model.types';
+import type { RequestUserType } from '../core/types/base-model.types';
 
 const SECRET_KEY: Secret = process.env.JWT_SECRET_KEY ?? ''
 const EXPIRY = (process.env.JWT_EXPIRY) as SignOptions['expiresIn']
