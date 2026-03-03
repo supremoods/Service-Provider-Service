@@ -1,7 +1,7 @@
 import { hashSync, compareSync } from "bcryptjs";
 import BaseModel from "../database/base-model";
 
-const SALT_ROUNDS: number | string = process.env.AUTH_SALT_ROUNDS || 12;
+const SALT_ROUNDS: number | string = process.env.AUTH_SALT_ROUNDS ?? '';
 
 export default class BaseAuthenticatorModel extends BaseModel {
 

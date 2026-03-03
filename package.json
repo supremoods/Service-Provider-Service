@@ -4,20 +4,13 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/jest": "^30.0.0",
-    "jest": "^30.2.0",
-    "sequelize-cli": "^6.6.3",
-    "ts-jest": "^29.4.5"
+    "sequelize-cli": "^6.6.3"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "scripts": {
-    "dev": "bun run --watch index.ts",
-    "sync:model": "bun run src/scripts/sync-model.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "dev": "bun run --watch index.ts"
   },
   "private": true,
   "dependencies": {
