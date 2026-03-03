@@ -109,6 +109,7 @@ web_modules/
 # parcel-bundler cache (https://parceljs.org/)
 
 .parcel-cache
+.vercel
 
 # Next.js build output
 
