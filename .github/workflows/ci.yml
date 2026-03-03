@@ -1,0 +1,31 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [dev, staging, production]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: [self-hosted, dev]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u jlappay --password-stdin
+
+      - name: Build and push
+        run: |
+          docker compose build
+          docker compose push
+
+  deploy:
+    name: Deploy
+    runs-on: [self-hosted, dev]
+    needs: build
+    steps:
+      - name: Deploy
+        run: |
+          docker compose pull
+          docker compose up -d --remove-orphans

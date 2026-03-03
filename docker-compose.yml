@@ -1,0 +1,21 @@
+
+services:
+
+    #####################################################################################
+    # Services build
+    #####################################################################################
+    mindsuite-service:
+      image: ${IMAGE:-ghcr.io/mind-wrap/mindsuite-service:dev}
+      container_name: mindsuite-service
+      build:
+          context: .
+          target: release
+      env_file: ./.env.production
+      ports:
+          - '5001:5001'
+      networks:
+          - mindsuite-network
+
+networks:
+  mindsuite-network:
+    name: mindsuite-network

@@ -1,0 +1,39 @@
+{
+  "name": "mindsuite-service",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "sequelize-cli": "^6.6.3",
+    "ts-jest": "^29.4.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "bun run --watch index.ts",
+    "sync:model": "bun run src/scripts/sync-model.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "private": true,
+  "dependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
+    "@types/express-fileupload": "^1.5.1",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "sequelize": "^6.37.7",
+    "ts-node": "^10.9.2",
+    "winston": "^3.18.3"
+  }
+}
