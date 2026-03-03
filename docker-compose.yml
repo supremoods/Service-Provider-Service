@@ -4,9 +4,9 @@ services:
     #####################################################################################
     # Services build
     #####################################################################################
-    mindsuite-service:
-      image: ${IMAGE:-ghcr.io/mind-wrap/mindsuite-service:dev}
-      container_name: mindsuite-service
+    sps-service:
+      image: ${IMAGE:-ghcr.io/mind-wrap/sps-service:dev}
+      container_name: sps-service
       build:
           context: .
           target: release
@@ -14,8 +14,8 @@ services:
       ports:
           - '5001:5001'
       networks:
-          - mindsuite-network
+          - sps-network
 
 networks:
-  mindsuite-network:
-    name: mindsuite-network
+  sps-network:
+    name: sps-network
