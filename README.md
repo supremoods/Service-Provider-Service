@@ -1,1 +1,1 @@
-# 🧠 Service Prover Service
+# Service Prover Service
