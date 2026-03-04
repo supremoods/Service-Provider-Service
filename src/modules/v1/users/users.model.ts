@@ -9,7 +9,7 @@ export default class Users extends BaseAuthenticatorModel {
   declare mobile_number: string
   declare password_hash: string
   declare role_type: string
-  declare account_type: "admin" | "provider" | "customer"
+  declare account_type?: "admin" | "provider" | "customer"
   declare status: "pending" | "approved" | "rejected"
   declare created_at: Date
   declare last_login?: Date;
@@ -82,7 +82,7 @@ let fields: ModelAttributes = {
 
   account_type: {
     type: DataTypes.ENUM("admin", "provider", "customer"),
-    allowNull: false
+    allowNull: true
   },
 
   status: {
