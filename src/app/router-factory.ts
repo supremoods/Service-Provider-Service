@@ -4,6 +4,7 @@ import path from "path";
 import type { Application } from 'express';
 import Logger from "../shared/logger";
 import { authMiddleware } from "../middlewares/auth.middleware";
+import { csrfMiddleware } from "../middlewares/csrf.middleware";
 
 const UNSECURED_SEGMENTS = new Set(['dev', 'public', 'public-v2.0'])
 
@@ -87,6 +88,7 @@ export default class RouterFactory {
                 const router = new RouterClass();
                 app.use(
                     endpoint,
+                    csrfMiddleware(),
                     authMiddleware(isUnsecure || router.grantPublicAccess),
                     router.getRoutes()
                 );
