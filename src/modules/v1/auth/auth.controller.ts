@@ -38,11 +38,13 @@ export default class AuthController extends BaseController<Users> {
          if(!username) throw new Error("Username is required")
          if(!password) throw new Error("Password is required")
          
-         const user = await Users.findOne({where:{username}, attributes: ['id','username','email','account_type','password_hash']})
+         const user = await Users.findOne({where:{username}, attributes: ['id','username','email','account_type','status','password_hash']})
 
          if(!user) throw new Error('User not found')
 
          if(!user.authenticate(password)) throw new Error("Invalid Credentials")
+
+         if(user.status === "pending") throw new Error("Account is still pending approval")
 
          const { password_hash, ...authenticatedUser } = user.toJSON() as Users
          

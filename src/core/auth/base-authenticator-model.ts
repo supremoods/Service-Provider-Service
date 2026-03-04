@@ -1,7 +1,10 @@
 import { hashSync, compareSync } from "bcryptjs";
 import BaseModel from "../database/base-model";
 
-const SALT_ROUNDS: number | string = process.env.AUTH_SALT_ROUNDS ?? '';
+const parsedSaltRounds = Number.parseInt(process.env.AUTH_SALT_ROUNDS ?? "", 10);
+const SALT_ROUNDS = Number.isFinite(parsedSaltRounds) && parsedSaltRounds >= 4 && parsedSaltRounds <= 31
+    ? parsedSaltRounds
+    : 12;
 
 export default class BaseAuthenticatorModel extends BaseModel {
 
