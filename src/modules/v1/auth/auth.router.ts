@@ -8,7 +8,7 @@ export default class AuthRouter extends BaseRouter<AuthController> {
         this.grantPublicAccess = true;
     }
 
-    override getAdditionalMapping = (): Mappings[] => {
+    override getMapping = (): Mappings[] => {
         return [
             { method: "POST", path: '/login', function: (req, res, next) => this.controller.login(req, res) },
             { method: "POST", path: '/refresh', function: (req, res, next) => this.controller.refresh(req, res) },
