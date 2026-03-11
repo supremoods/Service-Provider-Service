@@ -45,20 +45,25 @@ export default class AuthController extends BaseController<Users> {
          if(!user.authenticate(password)) throw new Error("Invalid Credentials")
 
          if(user.status === "pending") throw new Error("Account is still pending approval")
+         if(user.status === "rejected") throw new Error("Your account has been rejected")
 
          const { password_hash, ...authenticatedUser } = user.toJSON() as Users
          
          const token = generate(authenticatedUser)
          const refreshToken = newRefreshTokenValue()
-
+         const dateNow = Date.now() 
          await RefreshToken.create({
             user_id: user.id,
             token_hash: hashRefreshToken(refreshToken),
-            expires_at: new Date(Date.now() + REFRESH_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000),
+            expires_at: new Date(dateNow + REFRESH_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000),
             created_by_ip: req.ip,
             user_agent: req.get("user-agent")
          })
 
+         await user.update({
+            last_login: dateNow
+         })
+         
          res.status(200).json(createSuccessResponse({
             token,
             refreshToken,
