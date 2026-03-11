@@ -14,7 +14,6 @@ export function authMiddleware(grantPublicAccess: boolean = false) {
                 const decoded = verify(token, clientSecret);
 
                 req.user = decoded;
-                req.user.id = req.user.sub;
             } else if (!grantPublicAccess) {
                 return res.status(401).send({
                     success: false,
