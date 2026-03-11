@@ -93,14 +93,7 @@ export default class DatabaseConnector {
                 (fileName) => fileName.endsWith(".model.ts") || fileName.endsWith(".model.js")
             );
 
-            const legacyModelFiles = DatabaseConnector.collectFiles(
-                path.join(DatabaseConnector.rootDir, "models"),
-                (fileName) => fileName.endsWith(".ts") || fileName.endsWith(".js")
-            );
-
-            const files = moduleModelFiles.length > 0 ? moduleModelFiles : legacyModelFiles;
-
-            for (const file of files) {
+            for (const file of moduleModelFiles) {
                 const model = await import(file);
                 if (model?.default?.associate) model.default.associate() 
             }

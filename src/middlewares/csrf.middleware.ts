@@ -104,6 +104,7 @@ export function csrfMiddleware() {
             }
 
             const csrfCookieToken = readCookieValue(req, CSRF_COOKIE_NAME);
+
             if (csrfCookieToken && csrfCookieToken !== csrfHeaderToken) {
                 res.status(403).send({
                     success: false,
